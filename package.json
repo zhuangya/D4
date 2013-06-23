@@ -1,0 +1,25 @@
+{
+  "name": "D4",
+  "version": "0.0.0",
+  "description": "daily d3 pratice",
+  "main": "main.js",
+  "devDependencies": {
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-livereload": "~0.1.2",
+    "grunt-regarde": "~0.1.1",
+    "grunt": "~0.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zhuangya/D4.git"
+  },
+  "keywords": [
+    "d3",
+    "angular"
+  ],
+  "author": "Ya Zhuang",
+  "license": "MIT"
+}
