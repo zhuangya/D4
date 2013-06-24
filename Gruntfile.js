@@ -22,19 +22,51 @@ module.exports = function (grunt) {
         }
       }
     },
-    // Configuration to be run (and then tested)
-    regarde: {
-      txt: {
-        files: '**/*.html',
-        tasks: ['livereload']
+    watch: {
+      stylus: {
+        files: ['app/src/stylus/**/*.styl'],
+        tasks: ['stylus'],
+        options: {
+          livereload: true
+        }
+      },
+      jade: {
+        files: ['app/src/jade/**/*.jade'],
+        tasks: ['jade']
+      },
+      html: {
+        files: ['**/*.html'],
+        options: {
+          livereload: true
+        }
       }
+    },
+    stylus: {
+      files: {
+        'app/styles/main.css': 'app/src/stylus/*.styl'
+      }
+    },
+    jade: {
+      html: {
+        files: [{
+          expand: true,
+          cwd: 'app/src/jade',
+          src: ['**/*.jade'],
+          dest: 'app/views',
+          ext: '.html'
+        }],
+        options: {
+          client: false,
+        }
+      },
     }
-
   });
 
-  grunt.loadNpmTasks('grunt-regarde');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
 
-  grunt.registerTask('default', ['livereload-start', 'connect', 'regarde']);
+  grunt.registerTask('default', ['connect', 'watch', 'jade', 'stylus']);
 };
