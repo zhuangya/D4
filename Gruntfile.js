@@ -24,27 +24,22 @@ module.exports = function (grunt) {
     },
     watch: {
       stylus: {
-        files: ['app/src/stylus/**/*.styl'],
-        tasks: ['stylus'],
-        options: {
-          livereload: true
-        }
+        files: ['app/src/stylus/**.styl'],
+        tasks: ['stylus']
       },
       jade: {
-        files: ['app/src/jade/**/*.jade'],
+        files: ['app/index.jade', 'app/src/jade/**.jade'],
         tasks: ['jade']
       },
-      html: {
-        files: ['**/*.html'],
+      static: {
+        files: ['app/index.html', 'app/**/*.html', 'app/**/*.css', 'app/**/*.js'],
         options: {
           livereload: true
         }
       }
     },
     stylus: {
-      files: {
-        'app/styles/main.css': 'app/src/stylus/*.styl'
-      }
+      'app/styles/main.css': ['app/src/stylus/*.styl']
     },
     jade: {
       html: {
@@ -54,6 +49,8 @@ module.exports = function (grunt) {
           src: ['**/*.jade'],
           dest: 'app/views',
           ext: '.html'
+        }, {
+          'app/index.html': 'app/index.jade'
         }],
         options: {
           client: false,
@@ -68,5 +65,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
 
-  grunt.registerTask('default', ['connect', 'watch', 'jade', 'stylus']);
+  grunt.registerTask('default', ['jade', 'stylus', 'connect', 'watch']);
 };
